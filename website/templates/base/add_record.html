@@ -1,0 +1,13 @@
+{% extends 'base/base.html' %} {% block body %}
+<div class="w-75 mt-4 m-auto">
+    <h1 class="text-center mt-2 mb-3 ">
+        Add/Update Record
+    </h1>
+    <form action="" method="POST">
+        {% csrf_token %} {{RecordForm.as_p}}
+        <a href="{{request.META.HTTP_REFERER}}" class="btn btn-secondary">Go Back</a> {% if page == 'update' %}
+        <button type="submit" class="btn btn-secondary">Update Record</button> {% else %}
+        <button type="submit" class="btn btn-secondary">Add Record</button> {% endif %}
+    </form>
+</div>
+{% endblock %}

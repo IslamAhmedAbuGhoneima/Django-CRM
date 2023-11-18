@@ -1,0 +1,72 @@
+{% extends 'base/base.html' %} {% block body %} {% if user.is_authenticated %}
+<h1 class="mt-4 mb-2">Hello {{user.username}}</h1>
+
+<div>
+    <a href="{% url 'add_record' %}" class="btn btn-success">Add Record</a>
+</div>
+<table class="table table-striped table-hover mt-2">
+    <thead class="table-dark">
+        <tr>
+            <th>Name</th>
+            <th>email</th>
+            <th>phone</th>
+            <th>address</th>
+            <th>city</th>
+            <th>state</th>
+            <th>zipCode</th>
+            <th>Created At</th>
+            <th>ID</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for record in records %}
+        <tr>
+            <td>
+                {{record.first_name}} {{record.last_name}}
+            </td>
+            <td>
+                {{record.email}}
+            </td>
+            <td>
+                {{record.phone}}
+            </td>
+            <td>
+                {{record.address}}
+            </td>
+            <td>
+                {{record.city}}
+            </td>
+            <td>
+                {{record.state}}
+            </td>
+            <td>
+                {{record.zipCode}}
+            </td>
+            <td>
+                {{record.created}}
+            </td>
+            <td>
+                <a href="{% url 'record' record.id %}">{{record.id}}</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+{% else %}
+<div class="w-50 m-auto pt-5">
+    <h1>Login</h1>
+    <form method="POST" action="{% url 'home' %}">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Username</label>
+            <input required type="text" name="username" class="form-control " id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input required type="password" name="password" class="form-control " id="exampleInputPassword1">
+        </div>
+        <button type="submit" class="btn btn-secondary">Login</button>
+    </form>
+</div>
+{% endif %} {% endblock %}

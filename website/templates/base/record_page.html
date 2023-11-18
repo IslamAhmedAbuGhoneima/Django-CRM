@@ -1,0 +1,37 @@
+{% extends 'base/base.html' %} {% block body %}
+<div class="card mt-4">
+    <div class="card-header">
+        {{record.first_name}} {{record.last_name}}
+    </div>
+    <div class="card-body">
+        <h5 class="card-title text-center">Record info</h5>
+        <p class="card-text border-2 border-0 border-bottom">
+            <strong>ID: </strong>{{record.id}}
+        </p>
+        <p class="card-text border-2 border-0 border-bottom">
+            <strong>Email: </strong>{{record.email}}
+        </p>
+        <p class="card-text border-2 border-0 border-bottom">
+            <strong>Phone: </strong>{{record.phone}}
+        </p>
+        <p class="card-text border-2 border-0 border-bottom">
+            <strong>Address: </strong>{{record.address}}
+        </p>
+        <p class="card-text border-2 border-0 border-bottom">
+            <strong>City: </strong>{{record.city}}
+        </p>
+        <p class="card-text border-2 border-0 border-bottom">
+            <strong>State: </strong>{{record.state}}
+        </p>
+        <p class="card-text border-2 border-0 border-bottom">
+            <strong>Zip Code: </strong>{{record.zipCode}}
+        </p>
+        <p class="card-text border-2 border-0 border-bottom">
+            <strong>Created At: </strong>{{record.created}}
+        </p>
+        <a href="{{request.META.HTTP_REFERER}}" class="btn btn-secondary">Go Back</a>
+        <a href="{% url 'update' record.id %}" class="btn btn-secondary">Update</a>
+        <a href="{% url 'delete' record.id %}" class="btn btn-danger">Delet</a>
+    </div>
+</div>
+{% endblock %}
